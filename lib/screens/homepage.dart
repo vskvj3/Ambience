@@ -40,6 +40,13 @@ class _MyHomePageState extends State<MyHomePage> {
             const Text(
               'HomePage',
             ),
+            FloatingActionButton(
+              onPressed: () {},
+              tooltip: "Add books",
+              autofocus: true,
+              isExtended: true,
+              child: const Icon(Icons.add),
+            )
           ],
         ),
       ),
