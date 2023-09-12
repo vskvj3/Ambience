@@ -5,28 +5,30 @@ class PlayScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text(""),
-      ),
-      body: const Center(
-        child: Column(
-          children: [
-            SizedBox(
-              height: 200,
-            ),
-            BookCover(),
-            SizedBox(
-              height: 50,
-            ),
-            ControlButtons(),
-            LinearProgressIndicator(
-              value: 0.2,
-              semanticsLabel: "hello",
-              semanticsValue: "hello",
-            ),
-          ],
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+          title: const Text(""),
+        ),
+        body: const Center(
+          child: Column(
+            children: [
+              SizedBox(
+                height: 200,
+              ),
+              BookCover(),
+              SizedBox(
+                height: 50,
+              ),
+              ControlButtons(),
+              LinearProgressIndicator(
+                value: 0.2,
+                semanticsLabel: "hello",
+                semanticsValue: "hello",
+              ),
+            ],
+          ),
         ),
       ),
     );

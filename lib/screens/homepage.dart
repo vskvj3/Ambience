@@ -20,13 +20,32 @@ class _MyHomePageState extends State<MyHomePage> {
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
         ),
-        body: GridView.builder(
-            itemCount: 30,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2),
-            itemBuilder: (context, index) {
-              return const BookCard();
-            }),
+        body: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text(
+                  "Choose One",
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                ),
+                IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.sort),
+                )
+              ],
+            ),
+            Expanded(
+              child: GridView.builder(
+                  itemCount: 30,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2),
+                  itemBuilder: (context, index) {
+                    return const BookCard();
+                  }),
+            ),
+          ],
+        ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {},
           tooltip: "Add books",
