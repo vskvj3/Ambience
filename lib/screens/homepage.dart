@@ -1,4 +1,5 @@
 import 'package:audiobook_player/widgets/book_card.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -36,13 +37,18 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
             Expanded(
-              child: GridView.builder(
-                  itemCount: 30,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2),
-                  itemBuilder: (context, index) {
-                    return const BookCard();
-                  }),
+              child: GridView.count(
+                crossAxisSpacing: 0,
+                mainAxisSpacing: 10,
+                childAspectRatio: 0.8,
+                crossAxisCount: 3,
+                children: List.generate(
+                  30,
+                  (index) {
+                    return BookCard(index: index.toString());
+                  },
+                ),
+              ),
             ),
           ],
         ),
