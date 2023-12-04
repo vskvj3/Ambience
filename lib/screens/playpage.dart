@@ -1,94 +1,41 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 
-class PlayScreen extends StatelessWidget {
+class PlayScreen extends StatefulWidget {
   const PlayScreen({super.key});
+
+  @override
+  State<PlayScreen> createState() => _PlayScreenState();
+}
+
+class _PlayScreenState extends State<PlayScreen> {
+  final audioPlayer = AudioPlayer();
+  bool isPlaying = false;
+  Duration duration = Duration.zero;
+  Duration position = Duration.zero;
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-          title: const Text(""),
-        ),
-        body: const Center(
+        body: Padding(
+          padding: const EdgeInsets.all(20),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(
-                height: 200,
-              ),
-              BookCover(),
-              SizedBox(
-                height: 50,
-              ),
-              ControlButtons(),
-              LinearProgressIndicator(
-                value: 0.2,
-                semanticsLabel: "hello",
-                semanticsValue: "hello",
-              ),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: Image.network(
+                  'https://images.squarespace-cdn.com/content/v1/5d253c231b7b3d000152f204/1636959802830-AW7JAWUJGCXXUYVIZC3J/Pride_and_Prejudice_Cover-Amazon-Front__77495.1569338564.386.513.jpg',
+                  width: double.infinity,
+                  height: 350,
+                  fit: BoxFit.cover,
+                ),
+              )
             ],
           ),
         ),
       ),
-    );
-  }
-}
-
-class BookCover extends StatelessWidget {
-  const BookCover({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.center,
-      children: [
-        Container(
-            decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.inversePrimary,
-                borderRadius: const BorderRadius.all(Radius.circular(10))),
-            alignment: Alignment.center,
-            width: 300,
-            height: 300,
-            padding: const EdgeInsets.all(0),
-            child: const Text("items"))
-      ],
-    );
-  }
-}
-
-class ControlButtons extends StatelessWidget {
-  const ControlButtons({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.skip_previous,
-              size: 30,
-            )),
-        IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.play_circle_fill,
-              size: 50,
-            )),
-        IconButton(
-          onPressed: () {},
-          icon: const Icon(
-            Icons.skip_next,
-            size: 30,
-          ),
-        ),
-      ],
     );
   }
 }
