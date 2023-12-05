@@ -15,6 +15,37 @@ class _PlayScreenState extends State<PlayScreen> {
   Duration position = Duration.zero;
 
   @override
+  void initState() {
+    super.initState();
+
+    setAudio();
+
+    audioPlayer.onPlayerStateChanged.listen((state) {
+      setState(() {
+        isPlaying = state == PlayerState.playing;
+      });
+    });
+
+    audioPlayer.onDurationChanged.listen((newDuration) {
+      setState(() {
+        duration = newDuration;
+      });
+    });
+
+    audioPlayer.onPositionChanged.listen((newPositon) {
+      setState(() {
+        position = newPositon;
+      });
+    });
+  }
+
+  Future setAudio() async {
+    String url =
+        'https://www.chosic.com/wp-content/uploads/2020/07/the-epic-2-by-rafael-krux(chosic.com).mp3';
+    audioPlayer.setSourceUrl(url);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
@@ -52,7 +83,11 @@ class _PlayScreenState extends State<PlayScreen> {
                 min: 0,
                 max: duration.inSeconds.toDouble(),
                 value: position.inSeconds.toDouble(),
-                onChanged: (value) async {},
+                onChanged: (value) async {
+                  final position = Duration(seconds: value.toInt());
+                  await audioPlayer.seek(position);
+                  await audioPlayer.resume();
+                },
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -62,6 +97,22 @@ class _PlayScreenState extends State<PlayScreen> {
                     Text(position.toString().substring(2, 7)),
                     Text(duration.toString().substring(2, 7)),
                   ],
+                ),
+              ),
+              CircleAvatar(
+                radius: 35,
+                child: IconButton(
+                  onPressed: () async {
+                    if (isPlaying) {
+                      await audioPlayer.pause();
+                    } else {
+                      // Source url = UrlSource(
+                      //     'https://www.chosic.com/wp-content/uploads/2020/07/the-epic-2-by-rafael-krux(chosic.com).mp3');
+                      await audioPlayer.resume();
+                    }
+                  },
+                  icon: Icon(isPlaying ? Icons.pause : Icons.play_arrow),
+                  iconSize: 50,
                 ),
               )
             ],
