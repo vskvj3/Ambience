@@ -1,4 +1,4 @@
-import 'package:audiobook_player/screens/playpage.dart';
+import 'package:ambience/screens/playpage.dart';
 import 'package:flutter/material.dart';
 
 class BookCard extends StatelessWidget {

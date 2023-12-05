@@ -1,4 +1,4 @@
-import 'package:audiobook_player/widgets/book_card.dart';
+import 'package:ambience/widgets/book_card.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
