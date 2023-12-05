@@ -31,6 +31,38 @@ class _PlayScreenState extends State<PlayScreen> {
                   height: 350,
                   fit: BoxFit.cover,
                 ),
+              ),
+              const SizedBox(height: 32),
+              const Text(
+                "Pride and Prejudice",
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 4),
+              const Text(
+                "Jane Austen",
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.normal,
+                ),
+              ),
+              Slider(
+                min: 0,
+                max: duration.inSeconds.toDouble(),
+                value: position.inSeconds.toDouble(),
+                onChanged: (value) async {},
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(position.toString().substring(2, 7)),
+                    Text(duration.toString().substring(2, 7)),
+                  ],
+                ),
               )
             ],
           ),
