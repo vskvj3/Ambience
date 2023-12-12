@@ -1,5 +1,5 @@
+import 'package:ambience/screens/add_books.dart';
 import 'package:ambience/widgets/book_card.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -53,7 +53,9 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            addBooksDialog(context);
+          },
           tooltip: "Add books",
           autofocus: true,
           isExtended: true,
@@ -61,5 +63,36 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
     );
+  }
+
+  Future<dynamic> addBooksDialog(BuildContext context) {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return Dialog(
+            // insetPadding:
+            // const EdgeInsets.symmetric(vertical: -20, horizontal: 40),
+            child: ButtonBar(
+              // mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.max,
+              alignment: MainAxisAlignment.center,
+              buttonMinWidth: 60,
+              buttonPadding: const EdgeInsets.symmetric(vertical: 50),
+              children: [
+                ElevatedButton(
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => AddFromLocalStorage(),
+                        ),
+                      );
+                    },
+                    child: const Text("Local Storage")),
+                ElevatedButton(onPressed: () {}, child: const Text("Youtube")),
+                ElevatedButton(onPressed: () {}, child: const Text("Librevox")),
+              ],
+            ),
+          );
+        });
   }
 }
